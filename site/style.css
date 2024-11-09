@@ -8,6 +8,11 @@ p {
     margin: 15px;
 }
 
+a {
+    color: black
+}
+
+
 #titre {
     background-color: green;
     margin: 0px;
