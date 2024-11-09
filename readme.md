@@ -2,6 +2,11 @@
 
 ## Installation et jeu
 
+### Prérequis
+
+1. Assurez vous d'avoir Python d'installé
+2. Vous devez avoir accès à un terminal
+
 ### Téléchargement
 
 Rendez-vous dans la section [releases](https://github.com/Weydoo-code/Evolife/releases) et téléchargez la dernière version stable.
@@ -10,7 +15,10 @@ Rendez-vous dans la section [releases](https://github.com/Weydoo-code/Evolife/re
 
 1. Téléchargez le fichier .zip
 2. Décompressez-le
-3. Lancez le jeu et amusez-vous !
+3. Lancer la commande `python -m venv venv`
+4. Activer votre venv avec `activate`
+5. Installer les dependances avec `pip install -r requirements.txt`
+6. Lancer le jeu avec `launch.bat` et amusez-vous !
 
 ## Licence
 
