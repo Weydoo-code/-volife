@@ -1,0 +1,25 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 25px;
+    margin: 0px;
+    font-weight: 700;
+}
+
+p {
+    margin: 10px;
+}
+
+#titre {
+    background-color: green;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 900;
+    margin: 0px;
+    padding: 15px;
+    text-align: center;
+    font-size: 40px;
+}
+
+#sous-titre {
+    margin-top: 30px;
+    text-decoration: underline;
+}
