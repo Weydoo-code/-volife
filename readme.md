@@ -1,9 +1,35 @@
 # Évolife
 
-## Télécharger
+## Installation et jeu
 
-Aller dans la section [releases](https://github.com/Weydoo-code/-volife/releases) et télécharger la dernière version non bêta.
+### Téléchargement
 
-## Jouer
+Rendez-vous dans la section [releases](https://github.com/Weydoo-code/-volife/releases) et téléchargez la dernière version stable.
 
-Télécharger le fichier .zip, décompresser le et jouer !
+### Comment jouer
+
+1. Téléchargez le fichier .zip
+2. Décompressez-le
+3. Lancez le jeu et amusez-vous !
+
+## Licence
+
+Évolife est distribué sous la licence Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).
+
+### Ce que cette licence permet :
+
+- Partager : copier et redistribuer le matériel sous n'importe quel format ou medium
+- Adapter : remixer, transformer et créer à partir du matériel
+
+### Sous les conditions suivantes :
+
+- Attribution : Vous devez donner le crédit approprié, fournir un lien vers la licence et indiquer si des modifications ont été faites.
+- Non-Commercial : Vous ne pouvez pas utiliser le matériel à des fins commerciales sans autorisation explicite.
+
+Pour plus de détails sur la licence, veuillez consulter le fichier [LICENSE](https://github.com/Weydoo-code/-volife/blob/master/LICENSE) dans ce dépôt ou visiter [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+
+Toute utilisation commerciale de ce jeu est strictement interdite sans l'autorisation explicite des développeurs d'Évolife.
+
+---
+
+N'hésitez pas à contribuer au projet ou à signaler des problèmes via les issues GitHub. Amusez-vous bien avec Évolife !
