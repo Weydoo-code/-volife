@@ -6,4 +6,4 @@ Aller dans la section [releases](https://github.com/Weydoo-code/-volife/releases
 
 ## Jouer
 
-Télécharger l'executable, lancer le et jouer !
+Télécharger le fichier .zip, décompresser le et jouer !

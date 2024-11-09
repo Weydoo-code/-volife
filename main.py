@@ -55,16 +55,16 @@ while running:
                 key_states[event.key] = False
 
     mov = "idle"
-    if key_states[pygame.K_UP] and player.pos.y > 40:
+    if key_states[pygame.K_UP] and player.pos.y > 27:
         player.move(0, -1)
         mov = "back"
-    if key_states[pygame.K_DOWN] and player.pos.y < 680:
+    if key_states[pygame.K_DOWN] and player.pos.y < 695:
         player.move(0, 1)
         mov = "front"
-    if key_states[pygame.K_LEFT] and player.pos.x > 40:
+    if key_states[pygame.K_LEFT] and player.pos.x > 33:
         player.move(-1, 0)
         mov = "left"
-    if key_states[pygame.K_RIGHT] and player.pos.x < 1240:
+    if key_states[pygame.K_RIGHT] and player.pos.x < 1247:
         player.move(1, 0)
         mov = "right"
 
@@ -83,7 +83,7 @@ while running:
     
     player.update(current_time, mov)
     player.draw(screen, mov)
-
+    
     pygame.display.flip()
     clock.tick(fps)
 
