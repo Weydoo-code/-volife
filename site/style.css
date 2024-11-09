@@ -1,25 +1,26 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 25px;
+    font-family: Arial, sans-serif;;
+    font-size: 20px;
     margin: 0px;
-    font-weight: 700;
 }
 
 p {
-    margin: 10px;
+    margin: 15px;
 }
 
 #titre {
     background-color: green;
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: 900;
     margin: 0px;
     padding: 15px;
     text-align: center;
     font-size: 40px;
+    font-family: "Arial Black";
 }
 
 #sous-titre {
     margin-top: 30px;
     text-decoration: underline;
+    font-weight: 700;
+    font-size: 25px;
+    margin-left: 30px;
 }
