@@ -1,5 +1,16 @@
 # Évolife
 
+- [Évolife](#évolife)
+  - [Installation et jeu](#installation-et-jeu)
+    - [Prérequis](#prérequis)
+    - [Téléchargement](#téléchargement)
+    - [Comment jouer](#comment-jouer)
+  - [Licence](#licence)
+    - [Ce que cette licence permet :](#ce-que-cette-licence-permet-)
+    - [Sous les conditions suivantes :](#sous-les-conditions-suivantes-)
+  - [Road-Map](#road-map)
+
+
 ## Installation et jeu
 
 ### Prérequis
@@ -16,9 +27,9 @@ Rendez-vous dans la section [releases](https://github.com/Weydoo-code/Evolife/re
 1. Téléchargez le fichier .zip
 2. Décompressez-le
 3. Lancer la commande `python -m venv venv`
-4. Activer votre venv avec `activate`
+4. Activer votre environement avec `activate`
 5. Installer les dependances avec `pip install -r requirements.txt`
-6. Lancer le jeu avec `launch.bat` et amusez-vous !
+6. Lancer le jeu avec `./launch.bat` et amusez-vous !
 
 ## Licence
 
@@ -39,6 +50,11 @@ Rendez-vous dans la section [releases](https://github.com/Weydoo-code/Evolife/re
 Pour plus de détails sur la licence, veuillez consulter le fichier [LICENSE](https://github.com/Weydoo-code/Evolife/blob/master/LICENSE) dans ce dépôt ou visiter [Creative Commons BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
 Toute utilisation commerciale de ce jeu est strictement interdite sans l'autorisation explicite des développeurs d'Évolife.
+
+## Road-Map
+- [x] Créer la base de l'affichage
+- [x] Faire la gestion de l'inventaire
+- [ ] Faire le posage des blocs
 
 ---
 
