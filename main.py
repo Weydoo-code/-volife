@@ -1,6 +1,7 @@
 import pygame
 import os
 import json
+import time
 import configparser
 from classes.entities.player import Player
 from classes.GUI.inventory import Inventory
@@ -43,8 +44,9 @@ def load_config():
         controls[key] = getattr(pygame, value)
 
 def reset_var():
-    global running, player, mov, key_states, map, inventory, drop_key_pressed
+    global running, player, mov, key_states, map, inventory, drop_key_pressed, drop_time
     running = True
+    drop_time = time.time()
     mov = "idle"
     map = load_map()
     player_data = load_data()
@@ -177,7 +179,9 @@ while running:
         player.move(1, 0)
         mov = "right"
     if drop_key_pressed:
-        inventory.dropitem()
+        if drop_time <= time.time():
+            inventory.dropitem()
+            drop_time = time.time() + 0.2
     
     screen.fill(black)
     for x in range(39):
