@@ -1,6 +1,7 @@
 import pygame
 import os
 import json
+import configparser
 from classes.entities.player import Player
 from classes.GUI.inventory import Inventory
 from tile_actions import *
@@ -25,16 +26,25 @@ pygame.display.set_caption("Évolife")
 os.system("cls")
 
 # Définition des fonctions
+def load_config():
+    global controls
+    config = configparser.ConfigParser()
+    config.read('config.ini')
+    
+    controls = {}
+    for key, value in config['KEY'].items():
+        controls[key] = getattr(pygame, value)
+
 def reset_var():
-    global running, player, mov, key_states, map, inventory, a_key_pressed
+    global running, player, mov, key_states, map, inventory, drop_key_pressed
     running = True
     mov = "idle"
     map = load_map()
     player_data = load_data()
     player = Player(player_data["playerx"], player_data["playery"], tile_size)
     inventory = Inventory()
-    a_key_pressed = False
-    key_states = {pygame.K_UP: False, pygame.K_DOWN: False, pygame.K_LEFT: False, pygame.K_RIGHT: False}
+    drop_key_pressed = False
+    key_states = {controls['up']: False, controls['down']: False, controls['left']: False, controls['right']: False}
     
 def load_texture():
     global texture_hover, texture_debug, texture_grass, texture_sand, texture_stone
@@ -109,6 +119,7 @@ def load_data():
             
 
 # Boucle principale du jeu
+load_config()
 reset_var()
 load_data()
 load_texture()
@@ -120,15 +131,13 @@ while running:
             save_data()
             running = False
         elif event.type == pygame.KEYDOWN:
-            # if event.key == pygame.K_ESCAPE:
-            #     running = False
-            if event.key == pygame.K_a:
-                a_key_pressed = True
+            if event.key == controls['drop']:
+                drop_key_pressed = True
             if event.key in key_states:
                 key_states[event.key] = True
         elif event.type == pygame.KEYUP:
-            if event.key == pygame.K_a:
-                a_key_pressed = False
+            if event.key == controls['drop']:
+                drop_key_pressed = False
             if event.key in key_states:
                 key_states[event.key] = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -147,20 +156,20 @@ while running:
                         case _:
                             pass
 
-    mov = "idle"
-    if key_states[pygame.K_UP] and player.pos.y > 27:
+        mov = "idle"
+    if key_states[controls['up']] and player.pos.y > 27:
         player.move(0, -1)
         mov = "back"
-    if key_states[pygame.K_DOWN] and player.pos.y < 695:
+    if key_states[controls['down']] and player.pos.y < 695:
         player.move(0, 1)
         mov = "front"
-    if key_states[pygame.K_LEFT] and player.pos.x > 33:
+    if key_states[controls['left']] and player.pos.x > 33:
         player.move(-1, 0)
         mov = "left"
-    if key_states[pygame.K_RIGHT] and player.pos.x < 1247:
+    if key_states[controls['right']] and player.pos.x < 1247:
         player.move(1, 0)
         mov = "right"
-    if a_key_pressed:
+    if drop_key_pressed:
         inventory.dropitem()
     
     screen.fill(black)
