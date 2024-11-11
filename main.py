@@ -12,7 +12,7 @@ pygame.init()
 width = 1280
 height = 720
 clock = pygame.time.Clock()
-fps = 25
+fps = 60
 tile_size = 32
 
 # Couleurs
@@ -20,12 +20,19 @@ white = (255, 255, 255)
 black = (0, 0, 0)
 
 # Créer la fenêtre
-screen = pygame.display.set_mode(size=(width, height))
+icon = pygame.image.load("ressources/GUI/icone.png")
 pygame.display.set_caption("Évolife")
+pygame.display.set_icon(icon)
+screen = pygame.display.set_mode(size=(width, height))
 
 os.system("cls")
 
 # Définition des fonctions
+def create_fps_text():
+    fps = str(int(clock.get_fps()))
+    font = pygame.font.Font(None, 30)
+    return font.render(f"FPS: {fps}", True, (255, 255, 255))
+
 def load_config():
     global controls
     config = configparser.ConfigParser()
@@ -156,7 +163,7 @@ while running:
                         case _:
                             pass
 
-        mov = "idle"
+    mov = "idle"
     if key_states[controls['up']] and player.pos.y > 27:
         player.move(0, -1)
         mov = "back"
@@ -198,6 +205,9 @@ while running:
     
     inventory.update(screen)
     inventory.saveinventory()
+    
+    fps_text = create_fps_text()
+    screen.blit(fps_text, (10, 10))
     
     pygame.display.flip()
     clock.tick(fps)
