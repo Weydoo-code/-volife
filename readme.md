@@ -54,7 +54,9 @@ Toute utilisation commerciale de ce jeu est strictement interdite sans l'autoris
 ## Road-Map
 - [x] Créer la base de l'affichage
 - [x] Faire la gestion de l'inventaire
+- [x] Faire le système de drop
 - [ ] Faire le posage des blocs
+- [ ] Créer la génération
 
 ---
 

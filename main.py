@@ -26,14 +26,14 @@ os.system("cls")
 
 # Définition des fonctions
 def reset_var():
-    global running, player, mov, key_states, map, inventory
+    global running, player, mov, key_states, map, inventory, a_key_pressed
     running = True
     mov = "idle"
     map = load_map()
-    player = Player(screen.get_width() / 2 - tile_size / 2, 
-                    screen.get_height() / 2 - tile_size / 2, 
-                    tile_size)
+    player_data = load_data()
+    player = Player(player_data["playerx"], player_data["playery"], tile_size)
     inventory = Inventory()
+    a_key_pressed = False
     key_states = {pygame.K_UP: False, pygame.K_DOWN: False, pygame.K_LEFT: False, pygame.K_RIGHT: False}
     
 def load_texture():
@@ -67,34 +67,68 @@ def load_map():
         map = json.loads(content)
         return map
     except json.JSONDecodeError:
-        print(f"Le fichier {file_path} ne contient pas de JSON valide. Création d'une nouvelle carte.")
         return create_new_map()
 
 def create_new_map():
-    # Créer une nouvelle carte (22 lignes x 39 colonnes remplie de zéros)
     new_map = [[0 for _ in range(39)] for _ in range(22)]
     
-    # Sauvegarder la nouvelle carte dans le fichier
     with open("save/map.json", "w") as fichier:
         json.dump(new_map, fichier, indent=4)
     
     return new_map
 
+def save_data():
+    data = {
+        "playerx": player.pos.x,
+        "playery": player.pos.y
+    }
+    with open("save/player.json", "w") as fichier:
+        json.dump(data, fichier, indent=4)
+
+def load_data():
+    file_path = "save/player.json"
+    default_data = {"playerx": width // 2, "playery": height // 2}  # Valeurs par défaut
+
+    if not os.path.exists(file_path):
+        print("Fichier de sauvegarde non trouvé. Utilisation des valeurs par défaut.")
+        return default_data
+
+    try:
+        with open(file_path, "r") as fichier:
+            data = json.load(fichier)
+        
+        if isinstance(data, list) and len(data) > 0:
+            data = data[0]
+        
+        if "playerx" in data and "playery" in data:
+            return data
+        else:
+            return default_data
+    except:
+        return default_data
+            
+
 # Boucle principale du jeu
 reset_var()
+load_data()
 load_texture()
 while running:
     mouse_pos = pygame.mouse.get_pos()
     current_time = pygame.time.get_ticks()
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
+            save_data()
             running = False
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_ESCAPE:
-                running = False
+            # if event.key == pygame.K_ESCAPE:
+            #     running = False
+            if event.key == pygame.K_a:
+                a_key_pressed = True
             if event.key in key_states:
                 key_states[event.key] = True
         elif event.type == pygame.KEYUP:
+            if event.key == pygame.K_a:
+                a_key_pressed = False
             if event.key in key_states:
                 key_states[event.key] = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -105,13 +139,13 @@ while running:
                 if 0 <= tile_x < 39 and 0 <= tile_y < 22:
                     match map[tile_y][tile_x]:
                         case 0:
-                            grass_action()
+                            grass_action(inventory=inventory)
                         case 1:
-                            sand_action()
+                            sand_action(inventory=inventory)
                         case 2:
-                            stone_action()
+                            stone_action(inventory=inventory)
                         case _:
-                            print(f"Type de tile {map[tile_y][tile_x]} non reconu.")
+                            pass
 
     mov = "idle"
     if key_states[pygame.K_UP] and player.pos.y > 27:
@@ -126,7 +160,9 @@ while running:
     if key_states[pygame.K_RIGHT] and player.pos.x < 1247:
         player.move(1, 0)
         mov = "right"
-
+    if a_key_pressed:
+        inventory.dropitem()
+    
     screen.fill(black)
     for x in range(39):
         for y in range(22):
@@ -152,6 +188,7 @@ while running:
     player.draw(screen, mov)
     
     inventory.update(screen)
+    inventory.saveinventory()
     
     pygame.display.flip()
     clock.tick(fps)
