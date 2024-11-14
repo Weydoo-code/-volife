@@ -16,7 +16,6 @@
 ### Prérequis
 
 1. Assurez vous d'avoir Python d'installé
-2. Vous devez avoir accès à un terminal
 
 ### Téléchargement
 
@@ -24,12 +23,13 @@ Rendez-vous dans la section [releases](https://github.com/Weydoo-code/Evolife/re
 
 ### Comment jouer
 
+> [!CAUTION]
+> Vous ne devez pas le changer de répertoire !
+
 1. Téléchargez le fichier .zip
 2. Décompressez-le
-3. Lancer la commande `python -m venv venv`
-4. Activer votre environement avec `activate`
-5. Installer les dependances avec `pip install -r requirements.txt`
-6. Lancer le jeu avec `./launch.bat` et amusez-vous !
+3. Lancer le fichier `build.bat`
+4. Lancer le jeu avec `launch.bat` et amusez-vous !
 
 ## Licence
 
